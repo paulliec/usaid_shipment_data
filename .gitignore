@@ -5,3 +5,7 @@ __pycache__/
 .env
 .streamlit/secrets.toml
 .streamlit/
+
+# RSA Keys
+*.p8
+*.pub
