@@ -165,44 +165,84 @@ This dashboard highlights the shipments of humanitarian aid and medical supplies
 Each shipment represents lives impacted and communities supported through essential health services.
 """)
 
+# Filters
+years = run_sql("SELECT DISTINCT LATEST_ACTUAL_DELIVERY_DATE_YEAR FROM HCD ORDER BY LATEST_ACTUAL_DELIVERY_DATE_YEAR")['LATEST_ACTUAL_DELIVERY_DATE_YEAR'].tolist()
+years = ['All'] + years  # Add 'All' option to years
+
+health_elements = run_sql("""
+    SELECT DISTINCT D365_HEALTH_ELEMENT 
+    FROM HCD 
+    WHERE D365_HEALTH_ELEMENT NOT IN ('HIV', 'Population TO3', '311Mission', 'Tuberculosis') 
+    ORDER BY D365_HEALTH_ELEMENT
+""")['D365_HEALTH_ELEMENT'].tolist()
+health_elements = ['All'] + health_elements  # Add 'All' option to health elements
+
+selected_year = st.selectbox("Select Year", options=years, index=0)
+selected_health_element = st.selectbox("Select Health Element", options=health_elements, index=0)
+
+# Modify the WHERE clauses in queries to handle 'All' selection
+year_filter = "" if selected_year == 'All' else f"LATEST_ACTUAL_DELIVERY_DATE_YEAR = {selected_year}"
+health_element_filter = "" if selected_health_element == 'All' else f"D365_HEALTH_ELEMENT = '{selected_health_element}'"
+
 # Key Metrics Row
 col1, col2, col3 = st.columns(3)
 
 # Fetch and display key metrics
-total_shipments_query = "SELECT COUNT(*) AS total_shipments FROM HCD"
+total_shipments_query = f"""
+SELECT COUNT(*) AS TOTAL_SHIPMENTS 
+FROM HCD 
+WHERE 1=1
+{' AND ' + year_filter if year_filter else ''}
+{' AND ' + health_element_filter if health_element_filter else ''}
+"""
 total_shipments = run_sql(total_shipments_query)['TOTAL_SHIPMENTS'].iloc[0]
 st.metric("Total Shipments", f"{total_shipments:,}")
 
-countries_supported_query = "SELECT COUNT(DISTINCT COUNTRY) AS countries_supported FROM HCD"
+countries_supported_query = f"""
+SELECT COUNT(DISTINCT COUNTRY) AS COUNTRIES_SUPPORTED 
+FROM HCD 
+WHERE 1=1
+{' AND ' + year_filter if year_filter else ''}
+{' AND ' + health_element_filter if health_element_filter else ''}
+"""
 countries_supported = run_sql(countries_supported_query)['COUNTRIES_SUPPORTED'].iloc[0]
 st.metric("Countries Supported", countries_supported)
 
-latest_year_query = "SELECT MAX(LATEST_ACTUAL_DELIVERY_DATE_YEAR) AS latest_year FROM HCD"
+latest_year_query = "SELECT MAX(LATEST_ACTUAL_DELIVERY_DATE_YEAR) AS LATEST_YEAR FROM HCD"
 latest_year = run_sql(latest_year_query)['LATEST_YEAR'].iloc[0]
 st.metric("Latest Delivery Year", f"{latest_year:.0f}")
 
 # Health Elements Distribution
 st.subheader("📊 Shipments by Health Element")
-health_elements_query = """
-SELECT D365_HEALTH_ELEMENT, COUNT(*) AS shipment_count
+health_elements_query = f"""
+SELECT 
+    D365_HEALTH_ELEMENT AS HEALTH_ELEMENT, 
+    COUNT(*) AS SHIPMENT_COUNT
 FROM HCD
+WHERE D365_HEALTH_ELEMENT NOT IN ('HIV', 'Population TO3', '311Mission', 'Tuberculosis')
+{' AND ' + year_filter if year_filter else ''}
 GROUP BY D365_HEALTH_ELEMENT
-ORDER BY shipment_count DESC
+ORDER BY SHIPMENT_COUNT DESC
 """
 health_elements = run_sql(health_elements_query)
 fig = px.bar(health_elements, 
              x='SHIPMENT_COUNT', 
-             y='D365_HEALTH_ELEMENT', 
+             y='HEALTH_ELEMENT', 
              orientation='h',
              title='Shipments by Health Element',
-             labels={'D365_HEALTH_ELEMENT': 'Health Element', 'SHIPMENT_COUNT': 'Number of Shipments'})
+             labels={'HEALTH_ELEMENT': 'Health Element', 'SHIPMENT_COUNT': 'Number of Shipments'})
 st.plotly_chart(fig, use_container_width=True)
 
 # Geographic Distribution
 st.subheader("🗺️ Geographic Distribution of Shipments")
-country_totals_query = """
-SELECT COUNTRY, COUNT(*) AS shipment_count
+country_totals_query = f"""
+SELECT 
+    COUNTRY, 
+    COUNT(*) AS SHIPMENT_COUNT
 FROM HCD
+WHERE 1=1
+{' AND ' + year_filter if year_filter else ''}
+{' AND ' + health_element_filter if health_element_filter else ''}
 GROUP BY COUNTRY
 """
 country_totals = run_sql(country_totals_query)
@@ -216,16 +256,21 @@ fig = px.choropleth(country_totals,
 st.plotly_chart(fig, use_container_width=True)
 
 # Recent Focus Areas
+# Recent Focus Areas
 col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("📈 Top Recipient Countries (Recent Years)")
-    recent_country_totals_query = """
-    SELECT COUNTRY, COUNT(*) AS shipment_count
+    recent_country_totals_query = f"""
+    SELECT 
+        COUNTRY, 
+        COUNT(*) AS SHIPMENT_COUNT
     FROM HCD
     WHERE LATEST_ACTUAL_DELIVERY_DATE_YEAR >= 2022
+    {' AND ' + health_element_filter if health_element_filter else ''}
+    AND D365_HEALTH_ELEMENT NOT IN ('HIV', 'Population TO3', '311Mission', 'Tuberculosis')
     GROUP BY COUNTRY
-    ORDER BY shipment_count DESC
+    ORDER BY SHIPMENT_COUNT DESC
     LIMIT 10
     """
     recent_country_totals = run_sql(recent_country_totals_query)
@@ -239,20 +284,24 @@ with col1:
 
 with col2:
     st.subheader("🏥 Shipments Over Time by Health Element")
-    yearly_health_query = """
-    SELECT LATEST_ACTUAL_DELIVERY_DATE_YEAR, D365_HEALTH_ELEMENT, COUNT(*) AS shipment_count
+    yearly_health_query = f"""
+    SELECT 
+        LATEST_ACTUAL_DELIVERY_DATE_YEAR AS DELIVERY_YEAR, 
+        D365_HEALTH_ELEMENT AS HEALTH_ELEMENT, 
+        COUNT(*) AS SHIPMENT_COUNT
     FROM HCD
+    WHERE D365_HEALTH_ELEMENT NOT IN ('HIV', 'Population TO3', '311Mission', 'Tuberculosis')
+    {' AND ' + health_element_filter if health_element_filter else ''}
     GROUP BY LATEST_ACTUAL_DELIVERY_DATE_YEAR, D365_HEALTH_ELEMENT
     ORDER BY LATEST_ACTUAL_DELIVERY_DATE_YEAR
     """
     yearly_health = run_sql(yearly_health_query)
     fig = px.line(yearly_health, 
-                  x='LATEST_ACTUAL_DELIVERY_DATE_YEAR',
+                  x='DELIVERY_YEAR',
                   y='SHIPMENT_COUNT',
-                  color='D365_HEALTH_ELEMENT',
+                  color='HEALTH_ELEMENT',
                   title='Shipments Over Time by Health Element')
     st.plotly_chart(fig, use_container_width=True)
-
 # Query Section
 st.divider()
 st.header("🔍 Explore the Data")
