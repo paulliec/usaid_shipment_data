@@ -1,0 +1,36 @@
+CODE,NAME,DEFINITION
+CODE,NAME,DEFINITION
+CODE,NAME,DEFINITION
+Code,Name,Definition
+AD010,USAID-authorized change,Delivery delay authorized by USAID to prevent adverse impact on supply chain. Specific cases are defined within sub-codes AD011-AD017.
+AD011,USAID-requested delay,USAID initiates a request to delay the delivery.
+AD012,USAID authorized early delivery,"GHSC-PSM can make an early delivery and determines that there are no adverse impacts (e.g. shelf-life, warehouse space). GHSC-PSM receives authorization from USAID to proceed with the early delivery. "
+AD013,Product overstock,Delivery on ADD would cause or contribute to an overstock of the product.
+AD014,Change to specs/qty/ship mode,"The recipient requested a change to the specifications, quantities, or shipment mode after RO approval. "
+AD015,Warehouse closed/not enough space,Warehouse is unable to receive the shipment due to insufficient warehouse capacity or warehouse closure
+AD016,Requested divert/split/consolidate,USAID or recipient requested that the line item be diverted to another location/country. USAID or recipient requested that a line item be split into multiple deliveries (multiple dates or multiple locations)
+AD017,Change in drug policy,Country or global (WHO) treatment guidelines require a change or delay to the line item
+AD020,Global supply shortage,Global supply shortage affects the availability of API/product.
+AD030,Recall/quality-related delay,"Quality issue causes recall, change of schedule, hold, FDA Warning or other official regulatory notice "
+AD040,Pre-shipment QA testing dely,Shipment delayed because QA testing was not conducted within the standard lead time.
+AD050,USAID/government caused docs delay,"Client or host government provided insufficient documents or took longer than agreed to supply proper import waiver/registration/pre-shipment inspection, and/or shipping documents, preventing the shipment from arriving as scheduled. This code only applies when the delay is exceptional, could not have been anticipated when setting the ADD, and was outside of GHSC-PSM's manageable control. "
+AD060,Force majeure,"Extraordinary event, such hurricane, volcano, earthquake, etc. "
+AD070,COVID19 or other security incident,"Extraordinary event, such as political/civil unrest, violent conflict, cyber attack, pandemic, curfew, port strikes, etc. "
+AD998,Data cleaning,User error or ARTMIS glitch created an incorrect ADD. ADD changed to match the date on the approved RO.
+AD999,Other acceptable delay,A delay outside GHSC-PSM's manageable control that is not covered by any of the other AD/UD codes.
+UD010,Sourcing delay,"Delay in sourcing line item, including RFx not opened or closed on time, quotes submitted late, or bid evaluation and award did not occur within standard processing time. "
+UD020,Contracting delay,"Delay in preparing, approving, issuing, or executing contract/PO. May also include delays related to framework contract not in place, administrative errors in contract/PO, or delay in Risk approval. "
+UD030,Vendor delayed GAD btwn quote & PO,Vendor confirms a different availability date at PO confirmation stage than quoted at the RO stage.
+UD040,Goods not available on GAD,"Vendor did not make goods available on the contractually agreed upon GAD. If this was due to a global shortage, quality related issues, or force majeure, an acceptable delay code may apply. "
+UD050,Vendor delay/error on shipping doc,Vendor sends documents late and/or with mistakes.
+UD060,Shelf-life below requirements,"Vendor offered product with shelf-life below the required level, resulting in a delay while GHSC-PSM waited for fresher product. "
+UD070,Inbound order was late to RDC,Delayed arrival of replenishment/inbound/restocking order caused distribution orders to be delayed.
+UD080,Delay in RDC processing,Delay in processing distribution order at RDC
+UD090,Poor coordination on QA inspection,"Lack of coordination to organize QA inspection and sampling for TO1, TO3, & TO4. If there is a delay in GHSC-QA conducting the QA, use the acceptable delay code. For TO2, see UD100. "
+UD100,QA Delay (TO2),"Delay in conducting QA for TO2 products. For QA delays on TO1, TO3, & TO4, see UD090 and/or AD040. "
+UD110,Shipped without pre-alert,"For C- or D-incoterms, vendor did not alert GHSC-PSM that goods were shipped to country, causing in-country delays. "
+UD120,3PL delays/errors on shipping docs,3PL is late preparing shipping documents and/or does so incorrectly
+UD130,Waiver/product registration delay,Delay in obtaining waiver and/or import documents.
+UD140,Delay in picking up shipment,Delay in picking up goods from the supplier after the goods were available.
+UD150,Delay in booking flight/ship/truck,Unable to book confirmed transport.
+UD160,Transit delay,"Missed flight, truck, port congestion. If caused by natural disasters, civil unrest, etc., please reference the appropriate acceptable delay code. "

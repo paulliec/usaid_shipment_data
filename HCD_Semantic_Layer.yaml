@@ -1,0 +1,1123 @@
+name: HCD_Semantic_Layer
+tables:
+  - name: HCD
+    description: This table, HCD, stores information about orders and their fulfillment
+      status, including details about the order, product, and delivery process. It
+      captures data on order entry, sourcing, planning, manufacturing, quality assurance,
+      and delivery, as well as metrics such as order cycle time, on-time delivery,
+      and inventory levels.__
+    base_table:
+      database: HEALTHCOMMODITYDATASETDB
+      schema: DATA
+      table: HCD
+    primary_key:
+      columns:
+        - ROPOLINE
+    dimensions:
+      - name: ROPOLINE
+        synonyms:
+          - '  '
+        description: '"Unique identifier for a specific product or order."__'
+        expr: ROPOLINE
+        data_type: TEXT
+        sample_values:
+          - RO10033315PO100035831
+          - RO10021223PO100019151
+          - RO10035156PO100039291
+      - name: TASK_ORDER
+        synonyms:
+          - '  '
+        description: Task Order__
+        expr: TASK_ORDER
+        data_type: TEXT
+        sample_values:
+          - TO1
+          - TO3
+          - TO4
+      - name: CONDOM_ADJUSTED_TASK_ORDER
+        synonyms:
+          - '  '
+        description: Condom Adjusted Task Order__
+        expr: CONDOM_ADJUSTED_TASK_ORDER
+        data_type: TEXT
+        sample_values:
+          - TO1
+          - TO3
+          - TO4
+      - name: COUNTRY
+        synonyms:
+          - '  '
+        description: List of countries.__
+        expr: COUNTRY
+        data_type: TEXT
+        sample_values:
+          - Zambia
+          - Uganda
+          - Burkina Faso
+      - name: RO_NUMBER
+        synonyms:
+          - '  '
+        description: Unique Reference Number for a Real Estate Property__
+        expr: RO_NUMBER
+        data_type: TEXT
+        sample_values:
+          - RO10033315
+          - RO10021223
+          - RO10060249
+      - name: PO_DO_IO_NUMBER
+        synonyms:
+          - '  '
+        description: Purchase Order Number__
+        expr: PO_DO_IO_NUMBER
+        data_type: TEXT
+        sample_values:
+          - PO10003583
+          - PO10001915
+          - PO10008774
+      - name: ORDER_NUMBER
+        synonyms:
+          - '  '
+        description: Unique identifier for each order.__
+        expr: ORDER_NUMBER
+        data_type: TEXT
+        sample_values:
+          - PO10003583
+          - PO10001915
+          - PO10008774
+      - name: STATUS_NAME
+        synonyms:
+          - '  '
+        description: The current status of a shipment.__
+        expr: STATUS_NAME
+        data_type: TEXT
+        sample_values:
+          - Shipment Delivered
+          - Partially Delivered
+          - Shipment Created
+      - name: TLP_INDICATOR
+        synonyms:
+          - '  '
+        description: 'TLP Indicator: This column stores the type of indicator used
+          in the HCD, with possible values being DCP (Data Classification Policy)
+          and GSC (Government Security Classification).__'
+        expr: TLP_INDICATOR
+        data_type: TEXT
+        sample_values:
+          - DCP
+          - GSC
+      - name: ORDER_TYPE
+        synonyms:
+          - '  '
+        description: Type of order being placed.__
+        expr: ORDER_TYPE
+        data_type: TEXT
+        sample_values:
+          - Purchase Order
+          - Distribution Order
+          - Replenishment Order
+      - name: FULFILLMENT_METHOD
+        synonyms:
+          - '  '
+        description: 'Fulfillment Method: The method used to deliver products to customers,
+          such as Direct Drop or RDC (Regional Distribution Center).__'
+        expr: FULFILLMENT_METHOD
+        data_type: TEXT
+        sample_values:
+          - Direct Drop
+          - RDC
+      - name: TRANSPORTATION_MODE
+        synonyms:
+          - '  '
+        description: Mode of transportation used for a trip or journey.__
+        expr: TRANSPORTATION_MODE
+        data_type: TEXT
+        sample_values:
+          - Land
+          - Air
+          - Sea
+      - name: ITEM_TRACER_CATEGORY
+        synonyms:
+          - '  '
+        description: Item Tracer Categories for tracking and categorizing items in
+          a laboratory or non-pharmaceutical setting.__
+        expr: ITEM_TRACER_CATEGORY
+        data_type: TEXT
+        sample_values:
+          - Laboratory
+          - Other Non-Pharma
+          - VMMC
+      - name: PRODUCT_CATEGORY
+        synonyms:
+          - '  '
+        description: Category of products related to laboratory and medical supplies.__
+        expr: PRODUCT_CATEGORY
+        data_type: TEXT
+        sample_values:
+          - Laboratory Reagents
+          - Laboratory Consumables
+          - Medical Supplies
+      - name: PRODUCT_ID
+        synonyms:
+          - '  '
+        description: Unique Product Identifier__
+        expr: PRODUCT_ID
+        data_type: TEXT
+        sample_values:
+          - 101330XUZ0B9
+          - 101514XUZ0AZ
+          - 101203XUZ0B9
+      - name: PRODUCT_NAME
+        synonyms:
+          - '  '
+        description: Product Names__
+        expr: PRODUCT_NAME
+        data_type: TEXT
+        sample_values:
+          - COBAS c111 Cuvette Segments  10 x 168  1 Pack
+          - Centrifuge Tube 50 mL  Polypropylene  Conical Bottom  Flat Screw Cap  Sterile  500
+            Each
+          - ABX Minotrol 16 Twin-Pack  High  2 x 2.5 mL  1 Pack
+      - name: UOM
+        synonyms:
+          - '  '
+        description: Unit of Measure__
+        expr: UOM
+        data_type: TEXT
+        sample_values:
+          - UNT
+          - PKG
+          - BOT
+      - name: BASE_UNIT
+        synonyms:
+          - '  '
+        description: Base unit of measurement for products.__
+        expr: BASE_UNIT
+        data_type: TEXT
+        sample_values:
+          - Pack
+          - Each
+          - Kit
+      - name: FRAMEWORK_CONTRACT
+        synonyms:
+          - '  '
+        description: Type of contract framework used for the project.__
+        expr: FRAMEWORK_CONTRACT
+        data_type: TEXT
+        sample_values:
+          - Non-Framework
+          - None
+          - Framework
+      - name: D365_HEALTH_ELEMENT
+        synonyms:
+          - '  '
+        description: Health Care Domain (HCD) Elements__
+        expr: D365_HEALTH_ELEMENT
+        data_type: TEXT
+        sample_values:
+          - HIV/AIDS
+          - Family Planning and Reproduction
+          - Pandemic Influenza and Other Emerging Threats
+      - name: D365_FUNDING_SOURCE
+        synonyms:
+          - '  '
+        description: Funding source for D365 projects.__
+        expr: D365_FUNDING_SOURCE
+        data_type: TEXT
+        sample_values:
+          - Mission Commodity Funding
+          - CORE Commodity Funding
+          - Other Donors Commodity Funding
+      - name: D365_FUNDING_SOURCE_DETAIL
+        synonyms:
+          - '  '
+        description: Funding source details for D365, including PEPFAR, COP, USAID,
+          and other population types.__
+        expr: D365_FUNDING_SOURCE_DETAIL
+        data_type: TEXT
+        sample_values:
+          - PEPFAR-COP-USAID
+          - Population TO3
+          - COVID19
+      - name: FISCAL_YEAR_FUNDING
+        synonyms:
+          - '  '
+        description: Fiscal Year Funding Designation__
+        expr: FISCAL_YEAR_FUNDING
+        data_type: TEXT
+        sample_values:
+          - None
+          - FY19
+          - FY18
+      - name: ESTIMATED_LEAD_TIME_IN_DAYS
+        synonyms:
+          - '  '
+        description: Estimated Lead Time in Days__
+        expr: ESTIMATED_LEAD_TIME_IN_DAYS
+        data_type: TEXT
+        sample_values:
+          - None
+          - '140.0'
+          - '147.0'
+      - name: VENDOR_INCOTERM
+        synonyms:
+          - '  '
+        description: Incoterms governing the delivery and payment terms for goods
+          sold by the vendor.__
+        expr: VENDOR_INCOTERM
+        data_type: TEXT
+        sample_values:
+          - DDP
+          - DAP
+          - CPT
+      - name: DESTINATION_INCOTERM
+        synonyms:
+          - '  '
+        description: Incoterms for Destination__
+        expr: DESTINATION_INCOTERM
+        data_type: TEXT
+        sample_values:
+          - None
+          - DDP
+          - DAP
+      - name: ILLUSTRATIVE_PRICE
+        synonyms:
+          - '  '
+        description: Illustrative prices for various products or services.__
+        expr: ILLUSTRATIVE_PRICE
+        data_type: TEXT
+        sample_values:
+          - '341.86'
+          - '25.75'
+          - '137.0'
+      - name: OTD_OTIF_EXCLUSION_FLAG
+        synonyms:
+          - '  '
+        description: Out-of-the-Door (OTD) OTIF Exclusion Flag.__
+        expr: OTD_OTIF_EXCLUSION_FLAG
+        data_type: TEXT
+        sample_values:
+          - None
+          - Y
+      - name: IN_FULL_IFD
+        synonyms:
+          - '  '
+        description: Indicator flag for full integration of IFD (International Financial
+          Data) into the HCD (Household Consumption Data).__
+        expr: IN_FULL_IFD
+        data_type: BOOLEAN
+        sample_values:
+          - 'True'
+          - 'False'
+      - name: ON_TIME_OTD
+        synonyms:
+          - '  '
+        description: '"On-time Outbound Delivery"__'
+        expr: ON_TIME_OTD
+        data_type: TEXT
+        sample_values:
+          - Y
+          - N
+          - None
+      - name: BETWEEN_M14_AND_14
+        synonyms:
+          - '  '
+        description: Is the data field used to indicate whether a home is between
+          M14 and M14?__
+        expr: BETWEEN_M14_AND_14
+        data_type: TEXT
+        sample_values:
+          - Y
+          - N
+          - None
+      - name: BETWEEN_P30_AND_30
+        synonyms:
+          - '  '
+        description: Is the patient between 30 and 30 years old?__
+        expr: BETWEEN_P30_AND_30
+        data_type: TEXT
+        sample_values:
+          - Y
+          - N
+          - None
+      - name: OTIF_CATEGORIES
+        synonyms:
+          - '  '
+        description: 'OTIF Categories: Classification of orders based on their delivery
+          status, including On Time In Full, Not On Time In Full, and On Time Not
+          In Full.__'
+        expr: OTIF_CATEGORIES
+        data_type: TEXT
+        sample_values:
+          - On Time In Full
+          - Not On Time In Full
+          - On Time Not In Full
+      - name: OTIF_BETWEEN_M14_AND_14
+        synonyms:
+          - '  '
+        description: OTIF (On Time In Full) performance between M14 and 14.__
+        expr: OTIF_BETWEEN_M14_AND_14
+        data_type: TEXT
+        sample_values:
+          - On Time In Full
+          - Not On Time In Full
+          - On Time Not In Full
+      - name: OTIF_BETWEEN_M30_AND_30
+        synonyms:
+          - '  '
+        description: OTIF (On Time In Full) performance metric, categorizing orders
+          as On Time In Full, Not On Time In Full, or On Time Not In Full.__
+        expr: OTIF_BETWEEN_M30_AND_30
+        data_type: TEXT
+        sample_values:
+          - On Time In Full
+          - Not On Time In Full
+          - On Time Not In Full
+      - name: AVERAGE_DAYS_LATE_BINNED
+        synonyms:
+          - '  '
+        description: Average number of days late for binned data.__
+        expr: AVERAGE_DAYS_LATE_BINNED
+        data_type: TEXT
+        sample_values:
+          - None
+          - Between 8 and 30
+          - <-14
+      - name: AVERAGE_DAYS_LATE
+        synonyms:
+          - '  '
+        description: Average number of days late.__
+        expr: AVERAGE_DAYS_LATE
+        data_type: TEXT
+        sample_values:
+          - '3.0'
+          - '30.0'
+          - '4.0'
+      - name: LINE_DELIVERY_STATUS
+        synonyms:
+          - '  '
+        description: The status of a line delivery, indicating whether it was delivered
+          on time, late, or early.__
+        expr: LINE_DELIVERY_STATUS
+        data_type: TEXT
+        sample_values:
+          - Delivered - On Time
+          - Delivered - Late
+          - Delivered - Early
+      - name: AGREED_DELIVERY_DATE
+        synonyms:
+          - '  '
+        description: 'Agreed Delivery Date: The date agreed upon by the parties involved
+          for the delivery of goods or services.__'
+        expr: AGREED_DELIVERY_DATE
+        data_type: TEXT
+        sample_values:
+          - 07-07-2017
+          - 02-20-2017
+          - 12-16-2019
+      - name: AGREED_DELIVERY_DATE_YEAR
+        synonyms:
+          - '  '
+        description: Year of Agreed Delivery Date__
+        expr: AGREED_DELIVERY_DATE_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2019.0'
+          - '2018.0'
+      - name: AGREED_DELIVERY_DATE_YEAR_MONTH
+        synonyms:
+          - '  '
+        description: Agreed delivery date in the format of year and month.__
+        expr: AGREED_DELIVERY_DATE_YEAR_MONTH
+        data_type: TEXT
+        sample_values:
+          - 2017-07
+          - 2017-02
+          - 2019-12
+      - name: AGREED_DELIVERY_DATE_FISCAL_YEAR
+        synonyms:
+          - '  '
+        description: Fiscal year in which the agreed delivery date was established.__
+        expr: AGREED_DELIVERY_DATE_FISCAL_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2020.0'
+          - '2018.0'
+      - name: AGREED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        synonyms:
+          - '  '
+        description: Agreed delivery date fiscal quarter and year for a project or
+          program.__
+        expr: AGREED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        data_type: TEXT
+        sample_values:
+          - 2017-Q4
+          - 2017-Q2
+          - 2020-Q1
+      - name: REVISED_AGREED_DELIVERY_DATE
+        synonyms:
+          - '  '
+        description: Revised Agreed Delivery Date for a project or product.__
+        expr: REVISED_AGREED_DELIVERY_DATE
+        data_type: TEXT
+        sample_values:
+          - 02-28-2017
+          - 12-16-2019
+          - 05-31-2018
+      - name: REVISED_AGREED_DELIVERY_DATE_YEAR
+        synonyms:
+          - '  '
+        description: Revised Agreed Delivery Date Year__
+        expr: REVISED_AGREED_DELIVERY_DATE_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2016.0'
+          - '2019.0'
+      - name: REVISED_AGREED_DELIVERY_DATE_YEAR_MONTH
+        synonyms:
+          - '  '
+        description: Revised Agreed Delivery Date Year-Month__
+        expr: REVISED_AGREED_DELIVERY_DATE_YEAR_MONTH
+        data_type: TEXT
+        sample_values:
+          - 2017-02
+          - 2016-12
+          - 2018-04
+      - name: REVISED_AGREED_DELIVERY_DATE_FISCAL_YEAR
+        synonyms:
+          - '  '
+        description: Revised Agreed Delivery Date Fiscal Year__
+        expr: REVISED_AGREED_DELIVERY_DATE_FISCAL_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2020.0'
+          - '2018.0'
+      - name: REVISED_AGREED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        synonyms:
+          - '  '
+        description: 'Revised Agreed Delivery Date Fiscal Quarter Year: The fiscal
+          quarter and year in which the delivery date was agreed upon.__'
+        expr: REVISED_AGREED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        data_type: TEXT
+        sample_values:
+          - 2017-Q2
+          - 2017-Q1
+          - 2020-Q1
+      - name: ORDER_ENTRY_DATE
+        synonyms:
+          - '  '
+        description: Date of order entry.__
+        expr: ORDER_ENTRY_DATE
+        data_type: TEXT
+        sample_values:
+          - 01-24-2017
+          - 11-01-2016
+          - 08-07-2018
+      - name: ORDER_ENTRY_DATE_YEAR_MONTH
+        synonyms:
+          - '  '
+        description: Date of order entry in the format YYYY-MM.__
+        expr: ORDER_ENTRY_DATE_YEAR_MONTH
+        data_type: TEXT
+        sample_values:
+          - 2017-01
+          - 2016-11
+          - 2018-08
+      - name: ORDER_ENTRY_DATE_FISCAL_QUARTER_YEAR
+        synonyms:
+          - '  '
+        description: Fiscal quarter and year of order entry date.__
+        expr: ORDER_ENTRY_DATE_FISCAL_QUARTER_YEAR
+        data_type: TEXT
+        sample_values:
+          - 2017-Q2
+          - 2017-Q1
+          - 2018-Q4
+      - name: REQUESTED_DELIVERY_DATE
+        synonyms:
+          - '  '
+        description: Date of requested delivery.__
+        expr: REQUESTED_DELIVERY_DATE
+        data_type: TEXT
+        sample_values:
+          - 07-07-2017
+          - 01-31-2017
+          - 12-16-2019
+      - name: REQUESTED_DELIVERY_DATE_YEAR
+        synonyms:
+          - '  '
+        description: Year of the requested delivery date.__
+        expr: REQUESTED_DELIVERY_DATE_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2019.0'
+          - '2018.0'
+      - name: REQUESTED_DELIVERY_DATE_YEAR_MONTH
+        synonyms:
+          - '  '
+        description: Requested Delivery Date Year-Month__
+        expr: REQUESTED_DELIVERY_DATE_YEAR_MONTH
+        data_type: TEXT
+        sample_values:
+          - 2017-07
+          - 2017-01
+          - 2018-04
+      - name: REQUESTED_DELIVERY_DATE_FISCAL_YEAR
+        synonyms:
+          - '  '
+        description: Fiscal year in which the requested delivery date falls.__
+        expr: REQUESTED_DELIVERY_DATE_FISCAL_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2020.0'
+          - '2018.0'
+      - name: REQUESTED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        synonyms:
+          - '  '
+        description: Requested Delivery Date Fiscal Quarter Year__
+        expr: REQUESTED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        data_type: TEXT
+        sample_values:
+          - 2017-Q4
+          - 2017-Q2
+          - 2020-Q1
+      - name: ESTIMATED_DELIVERY_DATE
+        synonyms:
+          - '  '
+        description: Estimated Delivery Date__
+        expr: ESTIMATED_DELIVERY_DATE
+        data_type: TEXT
+        sample_values:
+          - 07-07-2017
+          - 02-20-2017
+          - 12-16-2019
+      - name: ESTIMATED_DELIVERY_DATE_YEAR
+        synonyms:
+          - '  '
+        description: Estimated Delivery Date Year__
+        expr: ESTIMATED_DELIVERY_DATE_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2019.0'
+          - '2018.0'
+      - name: ESTIMATED_DELIVERY_DATE_YEAR_MONTH
+        synonyms:
+          - '  '
+        description: Estimated Delivery Date Year-Month__
+        expr: ESTIMATED_DELIVERY_DATE_YEAR_MONTH
+        data_type: TEXT
+        sample_values:
+          - 2017-07
+          - 2017-02
+          - 2019-12
+      - name: ESTIMATED_DELIVERY_DATE_FISCAL_YEAR
+        synonyms:
+          - '  '
+        description: Estimated Delivery Date Fiscal Year__
+        expr: ESTIMATED_DELIVERY_DATE_FISCAL_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2020.0'
+          - '2018.0'
+      - name: ESTIMATED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        synonyms:
+          - '  '
+        description: Estimated Delivery Date Fiscal Quarter Year__
+        expr: ESTIMATED_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        data_type: TEXT
+        sample_values:
+          - 2017 Q4
+          - 2017 Q2
+          - 2020 Q1
+      - name: LATEST_ACTUAL_DELIVERY_DATE
+        synonyms:
+          - '  '
+        description: Latest Actual Delivery Date of a Project__
+        expr: LATEST_ACTUAL_DELIVERY_DATE
+        data_type: TEXT
+        sample_values:
+          - 03-03-2017
+          - 01-30-2017
+          - 12-20-2019
+      - name: LATEST_ACTUAL_DELIVERY_DATE_YEAR_MONTH
+        synonyms:
+          - '  '
+        description: Latest Actual Delivery Date Year-Month__
+        expr: LATEST_ACTUAL_DELIVERY_DATE_YEAR_MONTH
+        data_type: TEXT
+        sample_values:
+          - 2017-03
+          - 2017-01
+          - 2018-04
+      - name: LATEST_ACTUAL_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        synonyms:
+          - '  '
+        description: Latest Actual Delivery Date for Fiscal Quarter and Year__
+        expr: LATEST_ACTUAL_DELIVERY_DATE_FISCAL_QUARTER_YEAR
+        data_type: TEXT
+        sample_values:
+          - 2017-Q2
+          - 2020-Q1
+          - 2018-Q2
+      - name: RO_CLARIFIED_DATE
+        synonyms:
+          - '  '
+        description: Date of Clarification of Requirements__
+        expr: RO_CLARIFIED_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - Thursday  August 6  2020
+          - Thursday  October 1  2020
+      - name: RO_SENT_PLAN_FULFILLMENT_DATE
+        synonyms:
+          - '  '
+        description: Date of fulfillment for a request for records or other information.__
+        expr: RO_SENT_PLAN_FULFILLMENT_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - Tuesday  December 21  2021
+          - Friday  August 21  2020
+      - name: RO_SENT_SOURCING_RFX_EVENT_DATE
+        synonyms:
+          - '  '
+        description: Date of receipt of sourcing requests for RO (Return on Investment)
+          events.__
+        expr: RO_SENT_SOURCING_RFX_EVENT_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - Tuesday  October 29  2019
+          - Thursday  September 24  2020
+      - name: INITIAL_PSM_SOURCE_APPROVAL_DATE
+        synonyms:
+          - '  '
+        description: Date of initial PSM source approval.__
+        expr: INITIAL_PSM_SOURCE_APPROVAL_DATE
+        data_type: TEXT
+        sample_values:
+          - Thursday  June 29  2017
+          - Monday  February 20  2017
+          - Thursday  August 23  2018
+      - name: RECIPIENT_APPROVAL_DATE
+        synonyms:
+          - '  '
+        description: Date of recipient approval.__
+        expr: RECIPIENT_APPROVAL_DATE
+        data_type: TEXT
+        sample_values:
+          - Thursday  June 29  2017
+          - Monday  February 20  2017
+          - Thursday  August 23  2018
+      - name: USAID_APPROVAL_DATE
+        synonyms:
+          - '  '
+        description: Date of USAID approval.__
+        expr: USAID_APPROVAL_DATE
+        data_type: TEXT
+        sample_values:
+          - Thursday  July 6  2017
+          - Tuesday  February 21  2017
+          - Thursday  August 23  2018
+      - name: PO_RELEASED_FOR_FULFILLMENT_DATE
+        synonyms:
+          - '  '
+        description: Date of release for fulfillment.__
+        expr: PO_RELEASED_FOR_FULFILLMENT_DATE
+        data_type: TEXT
+        sample_values:
+          - 08-01-2017
+          - 06-01-2017
+          - 09-21-2018
+      - name: PO_RELEASED_FOR_FULFILLMENT_DATE_YEAR
+        synonyms:
+          - '  '
+        description: Date of PO Released for Fulfillment in a Year__
+        expr: PO_RELEASED_FOR_FULFILLMENT_DATE_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2018.0'
+          - '2019.0'
+      - name: PO_RELEASED_FOR_FULFILLMENT_DATE_YEAR_MONTH
+        synonyms:
+          - '  '
+        description: Date of PO Release for Fulfillment__
+        expr: PO_RELEASED_FOR_FULFILLMENT_DATE_YEAR_MONTH
+        data_type: TEXT
+        sample_values:
+          - 2017-08
+          - 2017-06
+          - 2018-09
+      - name: PO_RELEASED_FOR_FULFILLMENT_DATE_FISCAL_YEAR
+        synonyms:
+          - '  '
+        description: Financial Year for PO Released for Fulfillment Date__
+        expr: PO_RELEASED_FOR_FULFILLMENT_DATE_FISCAL_YEAR
+        data_type: TEXT
+        sample_values:
+          - '2017.0'
+          - '2018.0'
+          - '2019.0'
+      - name: PO_RELEASED_FOR_FULFILLMENT_DATE_FISCAL_QUARTER_YEAR
+        synonyms:
+          - '  '
+        description: Date of PO Released for Fulfillment, Fiscal Quarter and Year__
+        expr: PO_RELEASED_FOR_FULFILLMENT_DATE_FISCAL_QUARTER_YEAR
+        data_type: TEXT
+        sample_values:
+          - 2017-Q4
+          - 2017-Q3
+          - 2018-Q4
+      - name: COMMITTED_GOODS_AVAILABLE_DATE
+        synonyms:
+          - '  '
+        description: Date of availability for committed goods.__
+        expr: COMMITTED_GOODS_AVAILABLE_DATE
+        data_type: TEXT
+        sample_values:
+          - 02-09-2017
+          - 02-20-2017
+          - 12-16-2019
+      - name: ACTUAL_GOODS_AVAILABLE_DATE
+        synonyms:
+          - '  '
+        description: Date of actual goods availability.__
+        expr: ACTUAL_GOODS_AVAILABLE_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - 05-16-2023
+          - 01-20-2020
+      - name: ACTUAL_CARGO_READY_DATE
+        synonyms:
+          - '  '
+        description: Date when the actual cargo is ready for shipment.__
+        expr: ACTUAL_CARGO_READY_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - 02-01-2021
+          - 12-09-2016
+      - name: QA_COMPLETE_DATE
+        synonyms:
+          - '  '
+        description: Date of completion of Quality Assurance (QA) testing.__
+        expr: QA_COMPLETE_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - 01-09-2023
+          - 03-17-2023
+      - name: MAX_PICK_UP_DATE
+        synonyms:
+          - '  '
+        description: Maximum Pick-up Date__
+        expr: MAX_PICK_UP_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - 07-18-2018
+          - 12-14-2018
+      - name: MAX_SHIP_DATE
+        synonyms:
+          - '  '
+        description: Maximum Ship Date__
+        expr: MAX_SHIP_DATE
+        data_type: TEXT
+        sample_values:
+          - 08-01-2017
+          - 08-03-2017
+          - 12-26-2019
+      - name: MAX_DEPARTURE_DATE
+        synonyms:
+          - '  '
+        description: Maximum Departure Date__
+        expr: MAX_DEPARTURE_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - 03-29-2018
+          - 10-21-2017
+      - name: MAX_ARRIVAL_DATE
+        synonyms:
+          - '  '
+        description: Maximum Arrival Date__
+        expr: MAX_ARRIVAL_DATE
+        data_type: TEXT
+        sample_values:
+          - None
+          - 11-02-2021
+          - 04-14-2021
+      - name: RO_VALIDATION
+        synonyms:
+          - '  '
+        description: RO Validation Percentage__
+        expr: RO_VALIDATION
+        data_type: TEXT
+        sample_values:
+          - None
+          - '20.0'
+          - '36.0'
+      - name: SOURCING_AND_PLANNING
+        synonyms:
+          - '  '
+        description: Sourcing and planning metrics for a project or initiative.__
+        expr: SOURCING_AND_PLANNING
+        data_type: TEXT
+        sample_values:
+          - None
+          - '192.0'
+          - '136.0'
+      - name: USAID_APPROVAL
+        synonyms:
+          - '  '
+        description: USAID Approval Rating__
+        expr: USAID_APPROVAL
+        data_type: TEXT
+        sample_values:
+          - '7.0'
+          - '1.0'
+          - '0.0'
+      - name: PROCESS_PO_DO
+        synonyms:
+          - '  '
+        description: Percentage of Process Orders Delivered On-Time.__
+        expr: PROCESS_PO_DO
+        data_type: TEXT
+        sample_values:
+          - '26.0'
+          - '100.0'
+          - '29.0'
+      - name: MANUFACTURE
+        synonyms:
+          - '  '
+        description: Manufacturing Cost Data__
+        expr: MANUFACTURE
+        data_type: TEXT
+        sample_values:
+          - None
+          - '41.0'
+          - '145.0'
+      - name: PICK_UP
+        synonyms:
+          - '  '
+        description: PICK_UP Time or Date of Pick-up__
+        expr: PICK_UP
+        data_type: TEXT
+        sample_values:
+          - None
+          - '9.0'
+          - '-3.0'
+      - name: DELIVER
+        synonyms:
+          - '  '
+        description: Delivery Metrics__
+        expr: DELIVER
+        data_type: TEXT
+        sample_values:
+          - None
+          - '117.0'
+          - '4.0'
+      - name: QUALITY_ASSURANCE
+        synonyms:
+          - '  '
+        description: Percentage of quality assurance.__
+        expr: QUALITY_ASSURANCE
+        data_type: TEXT
+        sample_values:
+          - None
+          - '20.0'
+          - '43.0'
+      - name: REASON_CODE
+        synonyms:
+          - '  '
+        description: Reason codes for handling customer disputes.__
+        expr: REASON_CODE
+        data_type: TEXT
+        sample_values:
+          - None
+          - AD012
+          - SD007
+      - name: REASON_CODE_DURATION
+        synonyms:
+          - '  '
+        description: Reason Code Duration__
+        expr: REASON_CODE_DURATION
+        data_type: TEXT
+        sample_values:
+          - None
+          - '27852.0'
+          - '27905.0'
+    measures:
+      - name: PRIME_LINE_NUMBER
+        synonyms:
+          - '  '
+        description: Primary Line Number__
+        expr: PRIME_LINE_NUMBER
+        data_type: NUMBER
+        sample_values:
+          - '1'
+          - '2'
+          - '38'
+      - name: BASE_UNIT_MULTIPLIER
+        synonyms:
+          - '  '
+        description: Base unit multiplier for converting between different units of
+          measurement.__
+        expr: BASE_UNIT_MULTIPLIER
+        data_type: NUMBER
+        sample_values:
+          - '1.0'
+          - '500.0'
+          - '100.0'
+      - name: ORDERED_QUANTITY
+        synonyms:
+          - '  '
+        description: Ordered quantity of items.__
+        expr: ORDERED_QUANTITY
+        data_type: NUMBER
+        sample_values:
+          - '186'
+          - '15'
+          - '210'
+      - name: SHIPPED_QUANTITY
+        synonyms:
+          - '  '
+        description: Total quantity of products shipped.__
+        expr: SHIPPED_QUANTITY
+        data_type: NUMBER
+        sample_values:
+          - '186'
+          - '15'
+          - '210'
+      - name: NUMBER_OF_SHIPMENTS
+        synonyms:
+          - '  '
+        description: 'Number of Shipments: The total number of shipments made by the
+          company.__'
+        expr: NUMBER_OF_SHIPMENTS
+        data_type: NUMBER
+        sample_values:
+          - '1'
+          - '2'
+          - '5'
+      - name: DELIVERY_PROGRESS
+        synonyms:
+          - '  '
+        description: Delivery Progress__
+        expr: DELIVERY_PROGRESS
+        data_type: NUMBER
+        sample_values:
+          - '2'
+      - name: ORDER_ENTRY_DATE_YEAR
+        synonyms:
+          - '  '
+        description: Year of Order Entry Date__
+        expr: ORDER_ENTRY_DATE_YEAR
+        data_type: NUMBER
+        sample_values:
+          - '2017'
+          - '2016'
+          - '2018'
+      - name: ORDER_ENTRY_DATE_FISCAL_YEAR
+        synonyms:
+          - '  '
+        description: Fiscal year in which the order entry date falls.__
+        expr: ORDER_ENTRY_DATE_FISCAL_YEAR
+        data_type: NUMBER
+        sample_values:
+          - '2017'
+          - '2018'
+          - '2019'
+      - name: LATEST_ACTUAL_DELIVERY_DATE_YEAR
+        synonyms:
+          - '  '
+        description: Latest Actual Delivery Date Year__
+        expr: LATEST_ACTUAL_DELIVERY_DATE_YEAR
+        data_type: NUMBER
+        sample_values:
+          - '2017'
+          - '2019'
+          - '2018'
+      - name: LATEST_ACTUAL_DELIVERY_DATE_FISCAL_YEAR
+        synonyms:
+          - '  '
+        description: Latest Actual Delivery Date for Fiscal Year__
+        expr: LATEST_ACTUAL_DELIVERY_DATE_FISCAL_YEAR
+        data_type: NUMBER
+        sample_values:
+          - '2017'
+          - '2020'
+          - '2018'
+      - name: ORDER_CYCLE_TIME
+        synonyms:
+          - '  '
+        description: The time it takes to complete an order cycle.__
+        expr: ORDER_CYCLE_TIME
+        data_type: NUMBER
+        sample_values:
+          - '39'
+          - '91'
+          - '501'
+  - name: CODE_LOOKUP
+    description: This table stores a lookup of codes and their corresponding names
+      and definitions.__
+    base_table:
+      database: HEALTHCOMMODITYDATASETDB
+      schema: DATA
+      table: CODE_LOOKUP
+    primary_key:
+      columns:
+        - Code
+    dimensions:
+      - name: CODE
+        synonyms:
+          - '  '
+        description: code lookup for AD codes if the code reason starts with 'AD'
+          it means acceptable delay if 'UD' it means unacceptable delay.__
+        expr: CODE
+        data_type: TEXT
+        sample_values:
+          - CODE
+          - Code
+          - AD010
+      - name: NAME
+        synonyms:
+          - '  '
+        description: Change Request Name__
+        expr: NAME
+        data_type: TEXT
+        sample_values:
+          - NAME
+          - Name
+          - USAID-authorized change
+      - name: DEFINITION
+        synonyms:
+          - '  '
+        description: Delivery delay authorized by USAID to prevent adverse impact
+          on supply chain. Specific cases are defined within sub-codes AD011-AD017.__
+        expr: DEFINITION
+        data_type: TEXT
+        sample_values:
+          - DEFINITION
+          - Definition
+          - Delivery delay authorized by USAID to prevent adverse impact on supply
+            chain. Specific cases are defined within sub-codes AD011-AD017.
+relationships:
+  - name: DelayCodes
+    left_table: HCD
+    right_table: CODE_LOOKUP
+    join_type: left_outer
+    relationship_type: many_to_one
+    relationship_columns:
+      - left_column: REASON_CODE
+        right_column: CODE
