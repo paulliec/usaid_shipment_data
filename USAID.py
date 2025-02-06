@@ -18,19 +18,28 @@ st.set_page_config(
     layout="wide"
 )
 
-# First, let's modify the JavaScript to be more robust
+# Modified JavaScript with a more aggressive approach
 js = '''
     <script>
         // Function to scroll to top
         function scrollToTop() {
-            window.parent.document.querySelector(".main").scrollTo(0, 0);
+            const main = window.parent.document.querySelector(".main");
+            if (main) {
+                main.scrollTo({top: 0, behavior: 'instant'});
+                main.scrollTop = 0;
+            }
         }
         
-        // Call immediately and after a short delay to ensure it works after full page load
+        // Call multiple times to ensure it works
         scrollToTop();
+        window.addEventListener('load', scrollToTop);
         setTimeout(scrollToTop, 100);
+        setTimeout(scrollToTop, 500);
     </script>
 '''
+
+# Move the HTML component after the title but before the main content
+st.title("🌍 Global Health Commodity Distribution Dashboard")
 st.components.v1.html(js)
 
 # Initialize Snowflake connection - remove debug messages
@@ -210,7 +219,6 @@ def display_content(
                         st.dataframe(df)
 
 # Header
-st.title("🌍 Global Health Commodity Distribution Dashboard")
 st.markdown("""
 This dashboard highlights the shipments of humanitarian aid and medical supplies distributed globally. 
 Each shipment represents lives impacted and communities supported through essential health services.
@@ -562,3 +570,7 @@ for message_index, message in enumerate(st.session_state.messages):
 # Reset the processed flag on rerun
 if st.session_state.current_input_processed:
     st.session_state.current_input_processed = False
+
+# Add RSA keys to gitignore
+with open('.gitignore', 'a') as f:
+    f.write('\n# RSA Keys\n*.p8\n*.pub\n')
