@@ -11,14 +11,14 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
 import numpy as np
 
-# Page config must be the first Streamlit command
+
 st.set_page_config(
     page_title="Global Health Commodity Distribution",
     page_icon="🌍",
     layout="wide"
 )
 
-# Modified JavaScript with a more aggressive approach
+#set to top of page
 js = '''
     <script>
         // Function to scroll to top
@@ -38,11 +38,11 @@ js = '''
     </script>
 '''
 
-# Move the HTML component after the title but before the main content
+
 st.title("🌍 Global Health Commodity Distribution Dashboard")
 st.components.v1.html(js)
 
-# Initialize Snowflake connection - remove debug messages
+# Initialize Snowflake connection
 if 'CONN' not in st.session_state or st.session_state.CONN is None:
     try:
         p_key = serialization.load_pem_private_key(
@@ -372,10 +372,10 @@ fig = px.bar(health_elements,
              title='Shipments by Health Element',
              labels={'HEALTH_ELEMENT': 'Health Element', 'SHIPMENT_COUNT': 'Number of Shipments'})
 
-# Remove the reversed y-axis setting
+
 fig.update_layout(
-    height=400,  # Optional: adjust height if needed
-    margin=dict(l=0, r=0, t=30, b=0)  # Optional: adjust margins if needed
+    height=400,  # adjust height if needed
+    margin=dict(l=0, r=0, t=30, b=0)  # adjust margins if needed
 )
 
 st.plotly_chart(fig, use_container_width=True)
@@ -412,7 +412,7 @@ fig = px.choropleth(country_totals,
                     color_continuous_scale='Blues',
                     title=None)
 
-# Make the map more balanced in size and update hover text
+
 fig.update_layout(
     title=None,
     height=500,
@@ -436,13 +436,13 @@ fig.update_layout(
         font_size=12,
         font_family="Arial",
         font=dict(
-            color="black"  # Make hover text black for better contrast
+            color="black"  
         )
     ),
     margin=dict(l=0, r=0, t=0, b=0)
 )
 
-# Update hover template with darker text
+
 fig.update_traces(
     hovertemplate="<b style='color: black;'>%{hovertext}</b><br>" +
                   "<span style='color: black;'>Shipments: %{z:,}</span><br>" +
@@ -451,10 +451,10 @@ fig.update_traces(
                   "<extra></extra>"
 )
 
-# Use container width with the new height
+
 st.plotly_chart(fig, use_container_width=True, height=500)
 
-# Simplified map details
+
 with st.expander("📊 Map Details"):
     st.markdown("""
     - Darker blue indicates more shipments
@@ -462,8 +462,7 @@ with st.expander("📊 Map Details"):
     - Data excludes HIV, Population TO3, 311Mission, and Tuberculosis programs
     """)
 
-# Recent Focus Areas
-# Recent Focus Areas
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -516,7 +515,6 @@ with col2:
                       'HEALTH_ELEMENT': 'Health Element'
                   })
     
-    # Optional: Update layout for better readability
     fig.update_layout(
         xaxis_title="Year",
         yaxis_title="Count of Shipments",
@@ -570,7 +568,3 @@ for message_index, message in enumerate(st.session_state.messages):
 # Reset the processed flag on rerun
 if st.session_state.current_input_processed:
     st.session_state.current_input_processed = False
-
-# Add RSA keys to gitignore
-with open('.gitignore', 'a') as f:
-    f.write('\n# RSA Keys\n*.p8\n*.pub\n')
