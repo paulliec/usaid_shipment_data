@@ -109,12 +109,27 @@ This repository contains public data that was previously available on the USAID 
 
 ## 📈 Data Overview
 
-The dataset includes information about:
+This repository includes the complete historical dataset that was previously available on the USAID website but has since been taken down. The data files are provided in the `data/` directory:
+
+- `hcd.csv`: Complete health commodity distribution dataset
+  - Contains detailed shipment records
+  - Includes all historical delivery data
+  - Preserves original USAID data structure
+- `code_lookup.csv`: Reference data for status codes and classifications
+
+These files are included to:
+1. Allow setup of a complete Snowflake database with historical data
+2. Enable analysis without Snowflake using the raw CSV files
+3. Preserve this valuable public health supply chain dataset
+4. Provide a reference for future health commodity distribution analysis
+
+The dataset includes comprehensive information about:
 - Global health commodity shipments
 - Delivery timelines and status
 - Health elements and programs
 - Geographic distribution
 - Shipment quantities and types
+- Performance metrics and delivery status
 
 ## 🤝 Contributing
 
